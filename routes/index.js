@@ -6,45 +6,60 @@ var arquivo = "./dados/file.js"
 
 
 
-/* GET home page. */
+/* GET HOMEPAGE */
 router.get('/', function(req, res, next) {
-
-  fs.readFile(arquivo, 'utf8' , (err,pessoas) => {
-    if (err) {
+  dados = {title: 'Homepage'}
+  loadFile(function read(err, data){
+    if(err){
       console.log(err)
-      return
+      dados['pessoas'] = []
+    }else{
+      dados['pessoas'] = JSON.parse(data)
     }
-    res.render('index', { title: 'Express', pessoas:pessoas });
+    res.render('index', dados)
   })
-  
-  
 });
 
 /* ROTA DE CADASTRO */
 
 router.post('/cadastrarPessoa', function(req, res, next){
-  var nome = req.body.nome;
-  hash = {
-    nome: req.body.nome,
-    sobrenome: req.body.sobrenome,
-    cpf: req.body.cpf,
-    telefone: req.body.telefone,
-    email: req.body.email
-  }
-
-  pessoas.push(hash);
-
-
-  fs.writeFile(arquivo, JSON.stringify(pessoas), function(err){
+  loadFile(function read(err, data){
     if(err){
       console.log(err)
       return
     }
-    res.render('index', {title: 'cadastro', pessoas:pessoas})
+
+    pessoas = JSON.parse(data)
+    hash = {
+      nome: req.body.nome,
+      sobrenome: req.body.sobrenome,
+      cpf: req.body.cpf,
+      telefone: req.body.telefone,
+      email: req.body.email
+    }
+    saveBase(hash)
+    res.render('index', {title:"Cadastro" , pessoas:pessoas})
+    
   })
-  
-  
 
 })
+
+
+//Funçoes Auxiliares
+var loadFile = function(callback){
+  var fs = require ('fs')
+  fs.readFile(arquivo, callback)
+}
+
+var saveBase = function(hash){
+  pessoas.push(hash)
+  var fs = require ('fs')
+  fs.writeFile(arquivo, JSON.stringify(pessoas), function(err){
+    if(err){
+      console.log(er)
+    }
+  })
+}
+
 
 module.exports = router;
