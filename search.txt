@@ -1,0 +1,5 @@
+https://programandosolucoes.dev.br/2020/12/22/nodejs-exportar-planilha/
+https://programandosolucoes.dev.br/category/javascript/
+https://programandosolucoes.dev.br/2022/08/23/variaveis-css/
+https://programandosolucoes.dev.br/2022/08/16/8-pseudo-classes-css/
+https://www.npmjs.com/package/excel4node
