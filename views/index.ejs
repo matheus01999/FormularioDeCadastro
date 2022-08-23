@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/"></script>
+    <script src="/javascripts/validacao.js"></script>
+  </head>
+
+  <body>
+    <h1>Formulario de Cadastro / Lista de Pessoas Cadastradas</h1>
+    <main>
+      <form class="formularioCadastro" action="/cadastrarPessoa" method="post" onsubmit="return validacao()">
+        <input type="text" name="nome" id="nome" placeholder="Nome">
+        <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome">
+        <input type="text" name="cpf" id="cpf" placeholder="CPF">
+        <input type="text" name="telefone" id="telefone" placeholder="Telefone">
+        <input type="email" name="email" id="email" placeholder="E-mail">
+        <input type="password" name="senha" id="senha" placeholder="Senha">
+        <input type="submit" value="Salvar">
+      </form>
+  
+      <div class="listaCadastro">
+        <table>
+          <tr>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>E-mail</th>
+            <th>Editar</th>
+            <th>Excluir</th>
+          </tr>
+          <% for(i=0; i<pessoas.length; i++) { %>
+            <tr>
+              <td><%= pessoas[i].nome%></td>
+              <td><%= pessoas[i].sobrenome%></td>
+              <td><%= pessoas[i].cpf%></td>
+              <td><%= pessoas[i].telefone%></td>
+              <td><%= pessoas[i].email%></td>
+              <td><a href="">Alterar</a></td>
+              <td><a href="">Excluir</a></td>
+            </tr>
+          <% } %>
+
+        </table>
+      </div>
+    </main>
+
+  </body>
+
+</html>
