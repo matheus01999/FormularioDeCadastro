@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var pessoas = [];
 var fs = require ('fs')
-var arquivo = "/temp/file.js"
+var arquivo = "./dados/file.js"
 
 
 
